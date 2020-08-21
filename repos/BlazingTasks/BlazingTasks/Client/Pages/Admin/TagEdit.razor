@@ -1,0 +1,39 @@
+﻿@page "/admin/tagedit/{id:int}"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@attribute [Authorize]
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<h2>Tag</h2>
+@if (tag == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EditForm Model="tag" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div>
+            <label>
+                Name
+                <InputText @bind-Value="tag.TagName" class="form-control" />
+                <ValidationMessage For="@(() => tag.TagName)" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Color
+                <InputSelect @bind-Value=tag.TagColor class="form-control">
+                    <option value=""></option>
+                    <option value="green">green</option>
+                    <option value="orange">orange</option>
+                    <option value="red">red</option>
+                </InputSelect>
+                <ValidationMessage For="@(() => tag.TagColor)" />
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
+}

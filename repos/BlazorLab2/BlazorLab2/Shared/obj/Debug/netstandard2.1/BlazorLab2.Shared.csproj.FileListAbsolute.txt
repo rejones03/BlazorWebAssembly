@@ -1,0 +1,9 @@
+C:\Users\Administrator\source\repos\BlazorLab2\BlazorLab2\Shared\bin\Debug\netstandard2.1\BlazorLab2.Shared.deps.json
+C:\Users\Administrator\source\repos\BlazorLab2\BlazorLab2\Shared\bin\Debug\netstandard2.1\BlazorLab2.Shared.dll
+C:\Users\Administrator\source\repos\BlazorLab2\BlazorLab2\Shared\bin\Debug\netstandard2.1\BlazorLab2.Shared.pdb
+C:\Users\Administrator\source\repos\BlazorLab2\BlazorLab2\Shared\obj\Debug\netstandard2.1\BlazorLab2.Shared.csprojAssemblyReference.cache
+C:\Users\Administrator\source\repos\BlazorLab2\BlazorLab2\Shared\obj\Debug\netstandard2.1\BlazorLab2.Shared.AssemblyInfoInputs.cache
+C:\Users\Administrator\source\repos\BlazorLab2\BlazorLab2\Shared\obj\Debug\netstandard2.1\BlazorLab2.Shared.AssemblyInfo.cs
+C:\Users\Administrator\source\repos\BlazorLab2\BlazorLab2\Shared\obj\Debug\netstandard2.1\BlazorLab2.Shared.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\BlazorLab2\BlazorLab2\Shared\obj\Debug\netstandard2.1\BlazorLab2.Shared.dll
+C:\Users\Administrator\source\repos\BlazorLab2\BlazorLab2\Shared\obj\Debug\netstandard2.1\BlazorLab2.Shared.pdb

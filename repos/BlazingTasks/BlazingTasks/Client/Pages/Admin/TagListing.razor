@@ -1,0 +1,26 @@
+﻿@page "/admin/taglisting"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@attribute [Authorize]
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<h2 class="p-2">Tag Listing</h2>
+<button class="btn btn-primary mb-4" @onclick="AddTag">Add Tag</button>
+@if (tags == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (tags.Count == 0)
+{
+    <div>Please use the <strong>Add Tag</strong> button to add some tags.</div>
+}
+else
+{
+    <ItemDisplay Items="tags" OnDelete="@((tag)=>DeleteTag((Tag)tag))"
+                 OnEdit="@((tag)=>EditTag((Tag)tag))">
+        <ItemTemplate Context="tag">
+            @tag.TagName
+        </ItemTemplate>
+    </ItemDisplay>
+}

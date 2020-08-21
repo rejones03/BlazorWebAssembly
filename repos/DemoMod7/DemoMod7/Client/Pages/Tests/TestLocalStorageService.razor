@@ -1,0 +1,27 @@
+﻿@page "/testlocalstorage"
+
+@using DemoMod7.Shared 
+
+@inject HttpClient Http
+@inject IJSRuntime js
+
+<h3>Test Local Storage Service</h3>
+
+<div class="mb-3">
+    <button class="btn btn-primary" @onclick="SaveTags">
+        Save Tags to Local Storage
+    </button>
+</div>
+<div>
+    <button class="btn btn-primary" @onclick="GetTags">
+        Get Tags from Local Storage
+    </button>
+</div>
+<div>
+    <ul>
+        @foreach (Tag item in tagsFromLocalStorage)
+        {
+            <li>@item.TagName, @item.TagColor</li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,9 @@
+C:\Users\Administrator\source\repos\DemoMod7\DemoMod7\Shared\bin\Debug\netstandard2.1\DemoMod7.Shared.deps.json
+C:\Users\Administrator\source\repos\DemoMod7\DemoMod7\Shared\bin\Debug\netstandard2.1\DemoMod7.Shared.dll
+C:\Users\Administrator\source\repos\DemoMod7\DemoMod7\Shared\bin\Debug\netstandard2.1\DemoMod7.Shared.pdb
+C:\Users\Administrator\source\repos\DemoMod7\DemoMod7\Shared\obj\Debug\netstandard2.1\DemoMod7.Shared.csprojAssemblyReference.cache
+C:\Users\Administrator\source\repos\DemoMod7\DemoMod7\Shared\obj\Debug\netstandard2.1\DemoMod7.Shared.AssemblyInfoInputs.cache
+C:\Users\Administrator\source\repos\DemoMod7\DemoMod7\Shared\obj\Debug\netstandard2.1\DemoMod7.Shared.AssemblyInfo.cs
+C:\Users\Administrator\source\repos\DemoMod7\DemoMod7\Shared\obj\Debug\netstandard2.1\DemoMod7.Shared.dll
+C:\Users\Administrator\source\repos\DemoMod7\DemoMod7\Shared\obj\Debug\netstandard2.1\DemoMod7.Shared.pdb
+C:\Users\Administrator\source\repos\DemoMod7\DemoMod7\Shared\obj\Debug\netstandard2.1\DemoMod7.Shared.csproj.CoreCompileInputs.cache

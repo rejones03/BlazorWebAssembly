@@ -1,0 +1,62 @@
+﻿@page "/forecast"
+@using BlazorLab1.Data
+@inject HttpClient Http
+
+<div class="card">
+    <div class="card-header">
+        <h3>Weather forecast</h3>
+    </div>
+    <div class="card-body">
+        <p>This component demonstrates fetching data from the server.</p>
+
+        @if (forecasts == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <div class="d-flex">
+                @foreach (var item in forecasts)
+                {
+                    <div class="card m-2">
+                        <div class="card-header">
+                            @item.Date.ToShortDateString()
+                        </div>
+                        <div class="card-body text-center">
+                            @switch (item.Summary)
+                            {
+                                case "Cloudy":
+                                    <span class="h1 oi oi-cloud"></span>
+                                    break;
+                                case "Rainy":
+                                    <span class="h1 oi oi-rain"></span>
+                                    break;
+                                case "Snowy":
+                                    <span class="h1 oi oi-rain"></span>
+                                    break;
+                                default:
+                                    <span class="h1 oi oi-sun"></span>
+                                    break;
+                            }
+                            <h1 class="card-title">@item.TemperatureF F&deg;</h1>
+                            <p class="card-text">
+                                @item.Summary weather expected @item.Date.DayOfWeek
+
+                                @if (item.Summary == "Rainy")
+                                {
+                                    <div class="alert alert-danger">
+                                        Weather Alert
+                                    </div>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                }
+                <br />
+                <div class="form-group">
+                    <button type="button" >Press Here</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

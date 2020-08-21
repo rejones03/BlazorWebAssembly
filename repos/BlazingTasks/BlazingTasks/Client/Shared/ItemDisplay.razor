@@ -1,0 +1,19 @@
+﻿@typeparam TItem
+@foreach (var item in Items)
+{
+    <div class="d-flex alert alert-light" @key="item">
+        <div class="flex-grow-1">
+            @ItemTemplate(item)
+        </div>
+        <div>
+            <button class="btn btn-outline-danger btn-sm"
+                    @onclick="(() => OnDelete.InvokeAsync(item))">
+                <span class="oi oi-trash"></span>
+            </button>
+            <button class="btn btn-outline-success btn-sm"
+                    @onclick="(() => OnEdit.InvokeAsync(item))">
+                <span class="oi oi-pencil"></span>
+            </button>
+        </div>
+    </div>
+}

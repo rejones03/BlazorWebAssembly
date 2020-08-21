@@ -1,0 +1,18 @@
+﻿@using BlazorLab2.Shared 
+<div class="dialog-container">
+    <div class="dialog">
+        <div class="dialog-title">
+            Add Task
+        </div>
+        <form class="dialog-body">
+            <div>
+                <label>Task:</label>
+                <input placeholder="Enter Task" @bind="TaskItem.TaskName" />
+            </div>
+        </form>
+        <div class="dialog-buttons">
+            <button class="btn btn-secondary mr-auto" @onclick="OnCancel">Cancel</button>
+            <button class="btn btn-success ml-auto" @onclick="OnSubmit">Submit</button>
+        </div>
+    </div>
+</div>

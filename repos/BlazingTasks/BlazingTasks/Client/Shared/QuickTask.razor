@@ -1,0 +1,82 @@
+﻿@inject HttpClient HttpClient
+ 
+<MSHPDialog>
+    <Title>
+        <div>Add Task</div>
+    </Title>
+    <ChildContent>
+        <div>
+            <label>
+                Task:
+            </label>
+            <input type="text" @bind="TaskItem.TaskName" />
+        </div>
+        <div>
+            <label>Tags:</label>
+            @if (tags == null)
+            {
+                <select class="custom-select" disabled>
+                    <option>(loading...)</option>
+                </select>
+            }
+            else
+            {
+                <select class="custom-select" @onchange="TagSelected">
+                    <option value="-1" disabled selected>(select)</option>
+                    @for (var i = 0; i < tags.Count; i++)
+                    {
+                        <option value="@i">@tags[i].TagName</option>
+                    }
+                </select>
+            }
+        </div>
+        <div class="tags">
+            @foreach (var tag in TaskItem.Tags)
+            {
+                <div class="tag tag-@tag.Tag.TagColor" @key="tag">
+                    @tag.Tag.TagName
+                    <button type="button" class="delete-tags" @onclick="@(() => RemoveTag(tag.Tag))">x</button>
+                </div>
+            }
+        </div>
+    </ChildContent>
+    <Buttons>
+        <button class="btn btn-secondary mr-auto" @onclick="OnCancel">Cancel</button>
+        <button class="btn btn-success ml-auto" @onclick="OnSubmit">Submit</button>
+    </Buttons>
+</MSHPDialog>
+
+
+@code {
+    [Parameter] public TaskItem TaskItem { get; set; }
+    [Parameter] public EventCallback OnCancel { get; set; }
+    [Parameter] public EventCallback OnSubmit { get; set; }
+
+    private IList<Tag> tags;
+    protected async override Task OnInitializedAsync()
+    {
+        tags = await HttpClient.GetFromJsonAsync<List<Tag>>("Tags");
+    }
+
+    void TagSelected(ChangeEventArgs e)
+    {
+        if (int.TryParse((string)e.Value, out var index) && index >= 0)
+        {
+            AddTag(tags[index]);
+        }
+    }
+
+    void AddTag(Tag tag)
+    {
+        if (TaskItem.Tags.Find(pt => pt.Tag == tag) == null)
+        {
+            TaskItem.Tags.Add(new TaskTag() { Tag = tag });
+        };
+    }
+
+    void RemoveTag(Tag tag)
+    {
+        TaskItem.Tags.RemoveAll(tt => tt.Tag == tag);
+    }
+}
+

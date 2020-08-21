@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "4HaFFrzuxyHTT9jCcayAakrDp9Ens0f9M/faVYHOuLh6aWEa8r7CFFd8ah1LQVTxDJRiTo0SgcXH30Kf3Z1hBA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Administrator\\source\\repos\\DemoMod7\\DemoMod7\\Shared\\DemoMod7.Shared.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

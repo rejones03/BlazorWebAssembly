@@ -1,0 +1,65 @@
+﻿@page "/taskedit/{id:int}"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@attribute [Authorize]
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<h2>Task</h2>
+@if (taskItem == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <EditForm Model="taskItem" OnValidSubmit="HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div>
+            <label>
+                Name
+                <InputText @bind-Value="taskItem.TaskName" class="form-control" />
+                <ValidationMessage For="@(() => taskItem.TaskName)" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Due Date
+                <InputDate @bind-Value="taskItem.DueDate" class="form-control" />
+                <ValidationMessage For="@(() => taskItem.DueDate)" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Priority
+                <InputSelect @bind-Value=taskItem.Priority class="form-control" style="width:200px">
+                    <option>Low</option>
+                    <option>Medium</option>
+                    <option>High</option>
+                </InputSelect>
+                <ValidationMessage For="@(() => taskItem.Priority)" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Hours
+                <InputNumber @bind-Value="taskItem.Hours" class="form-control" />
+                <ValidationMessage For="@(() => taskItem.Hours)" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Notes
+                <InputTextArea @bind-Value="taskItem.Notes" class="form-control" style="width:200px" />
+                <ValidationMessage For="@(() => taskItem.Notes)" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Is Complete?
+                <InputCheckbox @bind-Value="taskItem.IsComplete" />
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </EditForm>
+}

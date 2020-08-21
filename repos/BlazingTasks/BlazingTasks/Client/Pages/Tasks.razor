@@ -1,0 +1,133 @@
+﻿@page "/tasks"
+@page "/filter/{tagId:int}"
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@attribute [Authorize]
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<button class="btn btn-primary mb-4" @onclick="AddTask">Add Task</button>
+
+@if (tasks == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!tasks.Any())
+{
+    <div>Please use the <strong>Add Task</strong> button to add some tasks.</div>
+}
+else
+{
+    if (tasks.Count > 0)
+    {
+        <ItemDisplay Items="tasks" OnDelete="@((taskItem)=>DeleteTask((TaskItem)taskItem))" OnEdit="@((taskItem)=>EditTask((TaskItem)taskItem))">
+            <ItemTemplate Context="taskItem">
+                <input type="checkbox" checked="@taskItem.IsComplete" @onchange="@(() => CheckboxChecked(taskItem))" />
+                <span class="@((taskItem.IsComplete ? "completed-task" : ""))">@taskItem.TaskName</span>
+                @if (@taskItem.Tags.Count > 0)
+                {
+                    <div class="listing">
+                        @foreach (TaskTag item in taskItem.Tags)
+                        {
+                            <span class="tag tag-@item.Tag.TagColor">@item.Tag.TagName</span>
+                        }
+                    </div>
+                }
+            </ItemTemplate>
+        </ItemDisplay>
+    }
+}
+
+@if (showingQuickTask)
+{
+    <CascadingValue Name="Color" Value="@Style">
+        <QuickTask TaskItem=newTask OnCancel="@(()=>showingQuickTask=false)" OnSubmit="SubmitTask" />
+    </CascadingValue>
+}
+
+@code {
+    [Parameter] public int tagId { get; set; }
+
+    private string Style { get; set; } = "background-color:#a04343";
+    private IList<TaskItem> tasks;
+    private IList<Tag> tags;
+    private bool showingQuickTask = false;
+    private TaskItem newTask;
+
+    private IList<TaskItem> allTasks;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            allTasks = await Http.GetFromJsonAsync<IList<TaskItem>>("TaskItems");
+        }
+        catch (AccessTokenNotAvailableException exception)
+        {
+            exception.Redirect();
+        };
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (tagId == 0)
+        {
+            tasks = (from t in allTasks
+                     select t).ToList();
+        }
+        else
+        {
+            tasks = (from t in allTasks
+                     from tt in t.Tags
+                     where tt.TagId == tagId
+                     select t).ToList();
+        }
+    }
+
+
+    void AddTask()
+    {
+        newTask = new TaskItem();
+        newTask.Tags = new List<TaskTag>();
+        showingQuickTask = true;
+    }
+
+    void EditTask(TaskItem taskItem)
+    {
+        Navigation.NavigateTo($"TaskEdit/{taskItem.TaskItemId}");
+    }
+
+    private async Task SubmitTask()
+    {
+        if (!string.IsNullOrWhiteSpace(newTask.TaskName))
+        {
+            tasks.Add(newTask);
+            var response = await Http.PostAsJsonAsync<TaskItem>("TaskItems", newTask);
+            if (response.IsSuccessStatusCode)
+            {
+                var updatedTask = await response.Content.ReadFromJsonAsync<TaskItem>();
+                allTasks.Add(updatedTask);
+            }
+            showingQuickTask = false;
+        }
+    }
+
+    private async Task CheckboxChecked(TaskItem task)
+    {
+        if (!task.IsComplete)
+        { task.CompletedDate = DateTime.Today; }
+        else
+        { task.CompletedDate = null; };
+
+        task.IsComplete = !task.IsComplete;
+        string url = $"TaskItems/{task.TaskItemId}";
+        var response = await Http.PutAsJsonAsync<TaskItem>(url, task);
+    }
+
+    private async Task DeleteTask(TaskItem taskItem)
+    {
+        allTasks.Remove(taskItem);
+        tasks.Remove(taskItem);
+        await Http.DeleteAsync($"TaskItems/{taskItem.TaskItemId}");
+    }
+}

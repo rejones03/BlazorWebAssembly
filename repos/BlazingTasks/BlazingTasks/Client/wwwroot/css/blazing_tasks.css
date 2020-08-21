@@ -1,0 +1,25 @@
+﻿.completed-task {
+    text-decoration: line-through;
+}
+
+.listing .tag {
+    display: inline-block;
+    background-color: #a04343;
+    color: white;
+    padding: 0.2rem 1rem;
+    border-radius: 1rem;
+    margin: 0.4rem 0.3rem;
+    font-size: .7rem;
+}
+
+.listing .tag-red {
+    background-color: #a04343;
+}
+
+.listing .tag-green {
+    background-color: #64766a;
+}
+
+.listing .tag-orange {
+    background-color: orangered;
+}

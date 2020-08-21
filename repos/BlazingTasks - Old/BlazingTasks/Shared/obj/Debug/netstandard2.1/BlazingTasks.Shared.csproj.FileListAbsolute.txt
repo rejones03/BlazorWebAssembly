@@ -1,0 +1,9 @@
+C:\Users\Administrator\source\repos\BlazingTasks\BlazingTasks\Shared\bin\Debug\netstandard2.1\BlazingTasks.Shared.deps.json
+C:\Users\Administrator\source\repos\BlazingTasks\BlazingTasks\Shared\bin\Debug\netstandard2.1\BlazingTasks.Shared.dll
+C:\Users\Administrator\source\repos\BlazingTasks\BlazingTasks\Shared\bin\Debug\netstandard2.1\BlazingTasks.Shared.pdb
+C:\Users\Administrator\source\repos\BlazingTasks\BlazingTasks\Shared\obj\Debug\netstandard2.1\BlazingTasks.Shared.csprojAssemblyReference.cache
+C:\Users\Administrator\source\repos\BlazingTasks\BlazingTasks\Shared\obj\Debug\netstandard2.1\BlazingTasks.Shared.AssemblyInfoInputs.cache
+C:\Users\Administrator\source\repos\BlazingTasks\BlazingTasks\Shared\obj\Debug\netstandard2.1\BlazingTasks.Shared.AssemblyInfo.cs
+C:\Users\Administrator\source\repos\BlazingTasks\BlazingTasks\Shared\obj\Debug\netstandard2.1\BlazingTasks.Shared.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\BlazingTasks\BlazingTasks\Shared\obj\Debug\netstandard2.1\BlazingTasks.Shared.dll
+C:\Users\Administrator\source\repos\BlazingTasks\BlazingTasks\Shared\obj\Debug\netstandard2.1\BlazingTasks.Shared.pdb
